@@ -23,7 +23,8 @@ shinyUI(fluidPage(
                 "coord_type",
                 "Projection type",
                 choices = c("UMAP" = "umap",
-                            "t-SNE" = "tsne")
+                            "t-SNE" = "tsne"),
+                selected="umap"
             ),
             selectInput(
                 "stage",
@@ -76,8 +77,8 @@ shinyUI(fluidPage(
                 
                 tabPanel(
                     "Dataset overview",
-                    id = "overiew"
-                    #plotOutput("data", width = big_plot_width, height = big_plot_height),
+                    id = "overiew",
+                    plotOutput("data"),
                     
                 ),
                 

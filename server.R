@@ -1,26 +1,36 @@
-#
-# This is the server logic of a Shiny web application. You can run the
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
 
 library(shiny)
+library(ggplot2)
+
+umap <- read.table(paste0("G:\\My Drive\\Postgrad\\PhD\\Projects\\data\\Ton_2020\\v2\\visual\\","umap.tab"))
+
+
+#logcounts <- TENxMatrix(file = "data.h5", group = "assays/logcounts")
+
+
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
-    # output$distPlot <- renderPlot({
-    # 
-    #     # generate bins based on input$bins from ui.R
-    #     x    <- faithful[, 2]
-    #     bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    # 
-    #     # draw the histogram with the specified number of bins
-    #     hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    # 
-    # })
+    plotOverview = reactive({
+        
+        
+        plot = ggplot(data = umap, 
+                      mapping = aes(x = V1, 
+                                    y = V2, 
+                                    col = "#005579")) +
+            geom_point(size = 1, 
+                       alpha = 0.9) +
+            ggtitle("Test") + theme_classic() +
+            theme(axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank(), axis.line = element_blank()) +
+            coord_fixed(ratio = 0.8) 
+       
+        
+        return(plot)
+    })
+    
+    output$data = output$data_dummy = renderPlot({
+        plotOverview()
+    })
 
 })
