@@ -1,1 +1,3 @@
-data.h5
+data/
+.Rproj.user
+scrabbit-shiny.Rproj
