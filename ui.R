@@ -1,13 +1,54 @@
 
 library(shiny)
 
-shinyUI(navbarPage(title="RabbitGastrulation2021",
+
+big_plot_width = "900px"
+big_plot_height = "500px"
+
+narrower_plot_width = "650px"
+
+
+shinyUI(navbarPage(title="RabbitGastrulation2022",
 
                    tabPanel("Landing page",
                         includeHTML("html/home.html")
                    ),
 
-                   tabPanel("Query expression"),
+                   tabPanel("Query expression",
+                        sidebarLayout(
+                            sidebarPanel(
+                                id="sidebar",
+                                width=3,
+                                h3("Plot options"),
+
+                                selectInput(
+                                    "dimred",
+                                    "Dimensionality reduction",
+                                    choices = c("UMAP" = "UMAP",
+                                                "TSNE" = "TSNE",
+                                                "ForceAtlas2" = "FA")
+                                ),
+
+                                selectizeInput("ensemblId",
+                                               "Ensembl ID",
+                                               choices=NULL),
+
+                                selectizeInput("gene",
+                                               "Gene",
+                                               choices=NULL),
+
+
+                            ),
+
+                            mainPanel(id="main",
+                                      width=8,
+                                      plotOutput("gene_plot",
+                                                 width = narrower_plot_width,
+                                                 height = big_plot_height)
+                            )
+                        )
+
+                    ),
 
 
                    tabPanel("Genome annotation",
