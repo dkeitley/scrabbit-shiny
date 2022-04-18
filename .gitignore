@@ -1,3 +1,4 @@
 data/
 .Rproj.user
 scrabbit-shiny.Rproj
+tests/
