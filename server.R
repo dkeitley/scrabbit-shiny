@@ -9,8 +9,7 @@ library(scrabbitr)
 
 
 # Load data
-temp_dir <- "G:/My Drive/Postgrad/PhD/Projects/rabbit-gastrulation-atlas/RabbitGastrulation2021/data-in/rabbit/logcounts_hdf5array_rowchunks.h5"
-link <- HDF5Array::HDF5Array(temp_dir, name='logcounts',as.sparse = TRUE)
+link <- HDF5Array::HDF5Array("data/rabbit/logcounts_hdf5array_rowchunks.h5", name='logcounts',as.sparse = TRUE)
 r_reducedDims <- readRDS("data/rabbit/reducedDims.rds")
 r_rowData <- readRDS("data/rabbit/rowData.rds")
 r_colData <- readRDS("data/rabbit/colData.rds")
