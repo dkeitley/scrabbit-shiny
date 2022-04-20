@@ -1,0 +1,11 @@
+name: scrabbit-shiny
+title:
+username:
+account: crukci
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6132694
+bundleId: 5818968
+url: https://crukci.shinyapps.io/scrabbit-shiny/
+when: 1650475082.19934
+lastSyncTime: 1650475082.19934

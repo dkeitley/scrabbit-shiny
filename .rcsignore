@@ -1,0 +1,6 @@
+tests/
+.git/
+.Rproj.user/
+.gitignore
+.Rhistory
+scrabbit-shiny.Rproj

@@ -25,8 +25,10 @@ shinyServer(function(input, output, session) {
       url = paste0(base_url, "r_data_store.zarr"),
       data_type = DataType$EXPRESSION_MATRIX,
       file_type = "anndata-expression-matrix.zarr",
-      options = list(matrix = "X"))
-    # )$add_file(
+      options = list(matrix = "X")
+    )
+
+    # $add_file(
     #   url = paste0(base_url, "r_data_store.zarr"),
     #   data_type = DataType$CELL_SETS,
     #   file_type = "anndata-cell-sets.zarr",
