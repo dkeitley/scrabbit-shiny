@@ -64,7 +64,7 @@
 
   			function loadSim(direction=0) {
 
-				const load_sim = d3.json("https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2020/" + dir_symbols[direction] + "_nhood_sim.json").then(nhoods => {
+				const load_sim = d3.json("https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2022/" + dir_symbols[direction] + "_nhood_sim.json").then(nhoods => {
 					sim[direction]=nhoods;
 
 					// TODO: Not sure if there's a way to avoid 2 loops
@@ -130,13 +130,13 @@
 				document.getElementById("clear_button").addEventListener("click", deselect, false);
 				document.getElementById("dir_dropdown").addEventListener("change", changeDirection);
 
-				const sprite = new THREE.TextureLoader().load( 'https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2020/disc.png' );
+				const sprite = new THREE.TextureLoader().load( 'https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2022/disc.png' );
 
 				scene = new THREE.Scene();
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth/ window.innerHeight, 0.1, 1000 );
 				
 				// Load rabbit nhoods...
-				r_data = d3.tsv("https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2020/rabbit_nhoods.tsv").then(data => {
+				r_data = d3.tsv("https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2022/rabbit_nhoods.tsv").then(data => {
 					data.forEach(d => {
 
 						d.umapX = Number(d.umapX);
@@ -180,7 +180,7 @@
 
 
 				// Load mouse nhoods...
-				m_data = d3.tsv("https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2020/mouse_nhoods.tsv").then(data => {
+				m_data = d3.tsv("https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2022/mouse_nhoods.tsv").then(data => {
 					data.forEach(d => {
 						d.umapX = Number(d.umapX);
 						d.umapY = Number(d.umapY)+5;
@@ -263,7 +263,7 @@
 			// Loads helvetica font 
 			function createText(text,x,y,z) {
 				const loader = new FontLoader();
-				loader.load( 'https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2020/' + "helvetiker" + '_' + "regular" + '.typeface.json', function ( response ) {
+				loader.load( 'https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation2022/' + "helvetiker" + '_' + "regular" + '.typeface.json', function ( response ) {
 					var font = response;
 					addText(text,x,y,z,font);
 					return(font)
