@@ -1,0 +1,20 @@
+
+library(BiocManager)
+options(repos = BiocManager::repositories())
+
+rsconnect::deployApp(appFiles = c('server.R',
+                                  'ui.R',
+                                  'html/compare_nhoods_page.html',
+                                  'html/compare_nhoods_3d.html',
+                                  'html/GA_igv.html',
+                                  'html/home.html',
+                                  'www/compare_nhoods_3d.js',
+                                  'www/d3.v7.min.js',
+                                  'www/FontLoader.js',
+                                  'www/igv.js',
+                                  'www/igv.min.js',
+                                  'www/TextGeometry.js',
+                                  'www/three.js',
+                                  'www/three.module.js',
+                                  'www/OrbitControls.js'
+))

@@ -25,12 +25,12 @@ shinyUI(navbarPage(title="RabbitGastrulation2022",
                             includeHTML("html/GA_igv.html"),
                    ),
 
-                   tabPanel("Compare neighbourhoods 3D",
-                                includeHTML("html/compare_neighbourhoods_3d.html"),
-                                HTML('<div id="nhoods3dDiv"></div>'),
-                                includeHTML("html/compare_nhoods_3d.html"),
+                    tabPanel("Compare neighbourhoods 3D",
+                                 includeHTML("html/compare_nhoods_page.html"),
+                                 HTML('<div id="nhoods3dDiv"></div>'),
+                                 includeHTML("html/compare_nhoods_3d.html"),
 
-                   )
+                    )
 
 
         )
