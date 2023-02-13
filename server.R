@@ -9,6 +9,28 @@ IMAGE_FILES <- read.csv("https://content.cruk.cam.ac.uk/jmlab/RabbitGastrulation
 colnames(IMAGE_FILES)[1] <- "Dataset"
 
 
+
+# Checks that file requested is server file list
+check_image_url <- function(image_url) {
+
+  url_parts <- strsplit(test, "/")[[1]]
+  image_file <- url_parts[length(url_parts)]
+  image_file <- gsub("\\..*", "", image_file) # remove file type
+  image_folder <- url_parts[length(url_parts)-1]
+
+  if(!any(IMAGE_FILES[,1] %in% image_folder)) {
+    return(FALSE)
+  }
+
+  if(!any(IMAGE_FILES[IMAGE_FILES[,1] == image_folder, "Image"] == image_file)) {
+    return(FALSE)
+  }
+
+  return(TRUE)
+}
+
+
+
 shinyServer(function(input, output, session) {
 
   # Update image selection options based on dataset selected
@@ -153,7 +175,8 @@ shinyServer(function(input, output, session) {
 
 
 
-  output$vitessce_imaging <- render_vitessce(expr = {
+
+  output$vitessce_imaging <- vitessceR::render_vitessce(expr = {
 
     # Configure Vitessce
     #IMAGE_URL <- "http://localhost:8080/"
@@ -166,22 +189,24 @@ shinyServer(function(input, output, session) {
     image_url <- paste0(IMAGE_URL, input$dataset, "/",  input$image, ".ome.tif")
     offset_url <- paste0(IMAGE_URL, input$dataset, "/", input$image, ".offsets.json")
 
+
+    if(!check_image_url(image_url)) {stop("Invalid image requested.")}
+
+
     dataset$add_file(
       data_type = DataType$RASTER,
       file_type = FileType$RASTER_JSON,
-      options = list(renderLayers = list("Histology/RNAscope"),
+      options = list(renderLayers = list(input$image),
                      schemaVersion = "0.0.2",
-                     images = list(vitessceR::obj_list(name = "Selected image",
+                     images = list(vitessceR::obj_list(name = input$image,
                                                        url = image_url,
                                                        type = "ome-tiff",
-                                                       metadata = list(omeTiffOffsetsUrl =  offset_url)
+                                                       metadata = list(omeTiffOffsetsUrl = offset_url)
                      ))
       ))
 
-
     spatial <- vc$add_view(dataset, Component$SPATIAL)
     spatial_layers <- vc$add_view(dataset, Component$LAYER_CONTROLLER)
-
 
     vc$layout(
       hconcat(spatial, spatial_layers)

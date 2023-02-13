@@ -3,7 +3,7 @@ library(shiny)
 library(vitessceR)
 
 
-big_plot_width = "600px"
+libvbig_plot_width = "600px"
 big_plot_height = "500px"
 
 narrower_plot_width = "500px"
@@ -28,7 +28,8 @@ shinyUI(navbarPage(title="RabbitGastrulation2022",
                             h4("Notes:"),
                             HTML("<ul><li>To make the gene expression as clear as possible, we recommend using the settings menu to switch the 'Cell Opacity Mode' and 'Cell Radius Mode' to manual and adjusting the 'Gene Expression Colormap Range'.</li>
                                  <li>Human gene alignments added in our modified genome annotation are listed by their Ensembl codes. E.g. Six3 is listed as 'ENSG00000138083'.</li>
-                                 <li>Many well-studied genes may not have gene name annotations in OryCun 2.0 and may be listed by their Ensembl code. If a gene of interest is missing, Ensembl Compara can be used to identify related gene features. For example, SOX17 is not listed in the OryCun2.0 reference, however 'ENSOCUG00000037040' closely aligns with the human SOX17 gene and is differentially expressed in the PGCs.   See link - <a href='https://www.ensembl.org/Homo_sapiens/Location/Compara_Alignments/Image?align=680;db=core;g=ENSG00000164736;r=8:54457935-54460892;t=ENST00000260653'>Human-Rabbit alignment of SOX17</a></li>
+                                 <li>Many well-studied genes may not have gene name annotations in OryCun 2.0 and may be listed by their Ensembl code. If a gene of interest is missing, Ensembl Compara can be used to identify related gene features. For example, SOX17 is not listed in the OryCun2.0 reference, however 'ENSOCUG00000037040' closely aligns with the human SOX17 gene and is differentially expressed in the PGCs.   See link - <a href='https://www.ensembl.org/Homo_sapiens/Location/Compara_Alignments/Image?align=680;db=core;g=ENSG00000164736;r=8:54457935-54460892;t=ENST00000260653'>Human-Rabbit alignment of SOX17</a>.</li>
+                                 <li>If the 'Cell Sets' aren't showing, try refreshing the page and selecting the 'scRNA-seq' tab again. </li>
                                  </ul>")
 
 
@@ -56,10 +57,6 @@ shinyUI(navbarPage(title="RabbitGastrulation2022",
 
                             vitessce_output(output_id = "vitessce_imaging",
                                             height = vitessce_height),
-                            h4("Notes:"),
-                            HTML("<ul><li> <p style='color:red'> There is currently a known issue preventing OME-TIF images from loading in VitessceR (Github issue <a href=https://github.com/vitessce/vitessceR/issues/65>#65</a>). While this is being addressed, the histology/RNAscope images can explored inside a Jupyter notebook.  See <a href=https://github.com/MarioniLab/RabbitGastrulation2022/blob/master/Histology_RNAscope/explore_images.ipynb>here</a>. </p> </ul>"),
-
-
 
 
                    ),
