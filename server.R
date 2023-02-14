@@ -13,7 +13,7 @@ colnames(IMAGE_FILES)[1] <- "Dataset"
 # Checks that file requested is server file list
 check_image_url <- function(image_url) {
 
-  url_parts <- strsplit(test, "/")[[1]]
+  url_parts <- strsplit(image_url, "/")[[1]]
   image_file <- url_parts[length(url_parts)]
   image_file <- gsub("\\..*", "", image_file) # remove file type
   image_folder <- url_parts[length(url_parts)-1]
